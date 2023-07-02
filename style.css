@@ -1,0 +1,55 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-image: url("blackjack-table.jpg");
+    background-repeat: none;
+    background-size: cover;
+    font-family: "Exo 2", sans-serif;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button {
+    background-color: #FFF100;
+    cursor: pointer;
+    border: none;
+}
+
+button#new-deck {
+    align-self: flex-start;
+    padding: 5px;
+    font-size: 25px;
+    border-radius: 5px;
+    margin: 5px;
+}
+button#new-deck:hover {
+    background-color: #e7de35f6;
+}
+button#draw-cards {
+    font-size: 25px;
+    padding: 5px;
+    align-self: stretch;
+}
+button#draw-cards:hover {
+    background-color: #e7de35f6;
+}
+
+div.card-slot {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 180px;
+    width: calc(180px * 5 / 7);
+}
+
+div.card-slot:nth-of-type(1) {
+    margin-bottom: 50px;
+}
+.cards {
+    border: 5px solid red;
+}
