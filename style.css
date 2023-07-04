@@ -1,18 +1,21 @@
 html, body {
-    margin: 0;
-    padding: 0;
     background-image: url("blackjack-table.jpg");
     background-repeat: none;
     background-size: cover;
     font-family: "Exo 2", sans-serif;
     height: 100vh;
 }
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    color: white;
 }
 
 button {
@@ -43,13 +46,23 @@ button#draw-cards:hover {
 div.card-slot {
     border: 1px solid black;
     border-radius: 5px;
-    height: 180px;
-    width: calc(180px * 5 / 7);
+    height: 200px;
+    width: calc(200px * 5 / 7);
 }
 
 div.card-slot:nth-of-type(1) {
-    margin-bottom: 50px;
+    margin-bottom: 15px;
 }
-.cards {
-    border: 5px solid red;
+
+.top {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+.top > h3 {
+    margin: 0;
+}
+button:disabled {
+    cursor: not-allowed;
 }

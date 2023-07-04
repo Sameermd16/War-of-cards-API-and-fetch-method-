@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>War Of Cards</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="cards fav icon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap" 
 </head>
 <body>
-    <button id="new-deck">New Deck, Please!</button>
+    <div class="top">
+        <button id="new-deck">New Deck, Please!</button>
+        <p id="remaining-cards"></p>
+    </div>
+    <h2 id="winner-display">War Of Cards</h2>
+    <h3 id="computer-score">Computer score: 0</h3>
     <div id="cards">
         <div class="card-slot"></div>
         <div class="card-slot"></div>
     </div>
+    <h3 id="my-score">My score: 0</h3>
     <button id="draw-cards">Draw</button>
     <script src="script.js"></script>
 </body>
