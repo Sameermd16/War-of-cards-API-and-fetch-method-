@@ -14,50 +14,47 @@ let deckId
 
 newDeckBtn.addEventListener('click', newDeck)
 
-function newDeck() {
-    fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            console.log(data.remaining)
-            remainingCardsEl.textContent = `Remaining Cards: ${data.remaining}`
-            deckId = data.deck_id
-            console.log(deckId)
-        })
+async function newDeck() {
+    const response = await fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+    const data = await response.json()    
+    console.log(data)
+    console.log(data.remaining)
+    remainingCardsEl.textContent = `Remaining Cards: ${data.remaining}`
+    deckId = data.deck_id
+    console.log(deckId)
+        
 }
 
 drawCardsBtn.addEventListener('click', drawCards)
 
-function drawCards() {
-    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            const images = data.cards.map((object) => {
-                return object.image
-            })
-            console.log(images)
-            cards.children[0].innerHTML = `<img src="${images[0]}" style="width:100%; height: 100%" />`
-            cards.children[1].innerHTML = `<img src="${images[1]}" style="width:100%; height: 100%" />`
+async function drawCards() {
+    const res = await fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+    const data = await res.json()    
+    console.log(data)
+    const images = data.cards.map((object) => {
+        return object.image
+    })
+    console.log(images)
+    cards.children[0].innerHTML = `<img src="${images[0]}" style="width:100%; height: 100%" />`
+    cards.children[1].innerHTML = `<img src="${images[1]}" style="width:100%; height: 100%" />`
 
-            const winnerText = determineCardWinner(data.cards[0], data.cards[1])
-            winnerDisplayEl.textContent = winnerText
-            remainingCardsEl.textContent = `Remaining Cards: ${data.remaining}`
+    const winnerText = determineCardWinner(data.cards[0], data.cards[1])
+    winnerDisplayEl.textContent = winnerText
+    remainingCardsEl.textContent = `Remaining Cards: ${data.remaining}`
 
-            computerScoreEl.textContent = `Computer Score: ${computerScore}`
-            myScoreEl.textContent = `My Score: ${myScore}`
+    computerScoreEl.textContent = `Computer Score: ${computerScore}`
+    myScoreEl.textContent = `My Score: ${myScore}`
 
-            if(data.remaining === 0) {
-                drawCardsBtn.setAttribute('disabled', '')  //drawCardsBtn.disabled = true
-                if(computerScore > myScore) {
-                    winnerDisplayEl.textContent = `Computer Wins!`
-                }else if(myScore > computerScore) {
-                    winnerDisplayEl.textContent = `You Won!`
-                }else {
-                    winnerDisplayEl.textContent = `It's tie game!`
-                }
-            }
-        })
+    if(data.remaining === 0) {
+        drawCardsBtn.setAttribute('disabled', '')  //drawCardsBtn.disabled = true
+        if(computerScore > myScore) {
+            winnerDisplayEl.textContent = `Computer Wins!`
+        }else if(myScore > computerScore) {
+            winnerDisplayEl.textContent = `You Won!`
+        }else {
+            winnerDisplayEl.textContent = `It's tie game!`
+        }
+    }        
     }
 
     //card1 = {value : '5'}
